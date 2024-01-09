@@ -30,9 +30,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install PHP dependencies using Composer
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage/ /var/www/html/bootstrap/cache/ /var/www/html/public/
-
 # Expose port 80
 EXPOSE 80
 

@@ -10,6 +10,7 @@
     - <b> composer install </b>
     - <b> php artisan key:generate </b>
     - <b> php artisan migrate </b>
+    - <b>chown -R www-data:www-data storage/</b>
   
 #### I have a postman collection attached in the project folder called: tech-test.postman_collection.json
 
