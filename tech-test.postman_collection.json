@@ -69,7 +69,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"date_from\": \"2024-01-02\",\n    \"date_to\": \"2024-01-08\",\n    \"booking_id\": \"30\"\n}",
+					"raw": "{\n    \"date_from\": \"2024-01-10\",\n    \"date_to\": \"2024-01-11\",\n    \"booking_id\": \"30\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
