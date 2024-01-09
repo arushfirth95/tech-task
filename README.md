@@ -1,8 +1,9 @@
 # Building and running the Project
 
-- Go to project folder and run:
-    - <b>docker-compose up --build</b>
 
+- Go to project folder and run:
+    - <b>Copy env.example to .env</b>
+    - <b>docker-compose up --build</b>
 - Bash into the container:
     - <b>docker exec -it1000:1000 *container_name_here* bash </b>
 - Run the following: 
