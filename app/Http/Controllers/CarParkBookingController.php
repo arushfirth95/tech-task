@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Library\Booking\CarParkBookingHandler;
 use App\Library\Services\CarPark\CarParkBookingService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -18,6 +19,10 @@ class CarParkBookingController extends Controller
      */
     protected $carParkBookingHandler;
 
+    /**
+     * @param CarParkBookingService $carParkBookingService
+     * @param CarParkBookingHandler $carParkBookingHandler
+     */
     public function __construct(CarParkBookingService $carParkBookingService, CarParkBookingHandler $carParkBookingHandler)
     {
 
@@ -25,21 +30,37 @@ class CarParkBookingController extends Controller
         $this->carParkBookingHandler = $carParkBookingHandler;
     }
 
+    /**
+     * This endpoint will take your date range and return you available spaces within that date range by date
+     *
+     * @param Request $request
+     *          The HTTP request containing date_from and date_to
+     * @return JsonResponse
+     *          Will return a JSON response with the spaces available
+     */
     public function checkAvailability(Request $request)
     {
         $date_from_object = \DateTime::createFromFormat('Y-m-d', $request->date_from);
         $date_to_object = \DateTime::createFromFormat('Y-m-d', $request->date_to);
 
         $bookings = $this->carParkBookingService->getAllBookingDayWithinDateRange($date_from_object->format('Y-m-d'), $date_to_object->format('Y-m-d'));
-
         $date_count = $this->carParkBookingHandler->getBookingAvailabilityData($bookings, $date_from_object, $date_to_object);
 
+        //Check if booking is available and return the spaces available regardless of availability
         if (!$this->carParkBookingHandler->isBookingAvailable($bookings, $date_from_object, $date_to_object)) {
             return response()->json(['message' => 'Parking range is not available', 'available_spaces' => $date_count['spaces_available']]);
         }
         return response()->json(['message' => 'Parking range is available', 'available_spaces' => $date_count['spaces_available']]);
     }
 
+    /**
+     * This endpoint will take your date range and return you the price to park for said date range
+     *
+     * @param Request $request
+     *          The HTTP request containing date_from and date_to
+     * @return JsonResponse
+     *          Will return a JSON response with the price
+     */
     public function checkPrice(Request $request)
     {
         $date_from_object = \DateTime::createFromFormat('Y-m-d', $request->date_from);
@@ -58,11 +79,20 @@ class CarParkBookingController extends Controller
                     'file_line' => $exception->getLine(),
                 ]
             );
-            return response(['message' => 'Internal Server Error'], 500);
+            return response()->json(['message' => 'Internal Server Error'], 500);
         }
         return response()->json(['price' => $price]);
     }
 
+    /**
+     * This endpoint will take your date range and create a new parking booking
+     *
+     * @param Request $request
+     *          The HTTP request containing date_from and date_to
+     * @return JsonResponse
+     *          Will return a JSON response with the success message of creating the booking and the booking reference
+     * @throws \Exception
+     */
     public function createBooking(Request $request)
     {
         $date_from_object = new \DateTime($request->date_from);
@@ -86,11 +116,20 @@ class CarParkBookingController extends Controller
                     'file_line' => $exception->getLine(),
                 ]
             );
-            return response(['message' => 'Internal Server Error'], 500);
+            return response()->json(['message' => 'Internal Server Error'], 500);
         }
         return response()->json(['message' => 'Booking created successfully', 'booking_reference' => $booking->getId()], 201);
     }
 
+    /**
+     * This endpoint will take the booking_id and cancel the booking (delete)
+     *
+     * @param Request $request
+     *          The HTTP request containing booking_id
+     * @return JsonResponse
+     *          Will return a JSON response with the success message of canceling the booking
+     * @throws \Exception
+     */
     public function cancelBooking(Request $request)
     {
         $booking_id = $request->booking_id;
@@ -105,11 +144,20 @@ class CarParkBookingController extends Controller
                     'fileLine' => $exception->getLine(),
                 ]
             );
-            return response(['message' => 'Internal Server Error'], 500);
+            return response()->json(['message' => 'Internal Server Error'], 500);
         }
         return response()->json(['message' => 'Booking canceled successfully']);
     }
 
+    /**
+     * This endpoint will take a new date range and booking_id and amend the existing booking with the new dates
+     *
+     * @param Request $request
+     *          The HTTP request containing date_from, date_to and booking_id
+     * @return JsonResponse
+     *          Will return a JSON response with the success message of amending the booking
+     * @throws \Exception
+     */
     public function amendBooking(Request $request)
     {
         $date_from_object = new \DateTime($request->date_from);
@@ -141,7 +189,7 @@ class CarParkBookingController extends Controller
                     'fileLine' => $exception->getLine(),
                 ]
             );
-            return response(['message' => 'Internal Server Error'], 500);
+            return response()->json(['message' => 'Internal Server Error'], 500);
         }
         return response()->json(['message' => 'Booking amended successfully']);
     }

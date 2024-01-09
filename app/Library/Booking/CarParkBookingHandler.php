@@ -8,9 +8,18 @@ use App\Library\Repositories\CarPark\CarParkBooking;
 
 class CarParkBookingHandler implements BookingHandler
 {
+    /**
+     * @var int
+     */
     protected $max_cars_per_day;
+    /**
+     * @var PricingCalculationService
+     */
     protected $pricingCalculationService;
 
+    /**
+     * @param PricingCalculationService $pricingCalculationService
+     */
     public function __construct(PricingCalculationService $pricingCalculationService)
     {
         $this->max_cars_per_day = (int)Config('app.max_cars_per_day');

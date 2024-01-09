@@ -8,12 +8,16 @@ use App\Library\Traits\WeekDayTypeFinder;
 
 class PricingCalculationService implements CalculationService
 {
+
     use WeekDayTypeFinder;
 
     /**
      * @var SeasonCalculationService
      */
     private $seasonCalculationService;
+    /**
+     * @var array
+     */
     const PRICING = [
         'winter' => 10,
         'summer' => 15,
@@ -23,6 +27,9 @@ class PricingCalculationService implements CalculationService
         'weekend' => 5
     ];
 
+    /**
+     * @param SeasonCalculationService $seasonCalculationService
+     */
     public function __construct(SeasonCalculationService $seasonCalculationService)
     {
         $this->seasonCalculationService = $seasonCalculationService;
@@ -40,12 +47,12 @@ class PricingCalculationService implements CalculationService
         // Default pricing for unknown seasons or week days
         $price = 0;
 
-        // Check if the season is known
+        // Check if the season is known and increment the price
         if (isset(self::PRICING[$season])) {
             $price += self::PRICING[$season];
         }
 
-        // Check if the week day is known
+        // Check if the week day is known and increment the price
         if (isset(self::PRICING[$week_day])) {
             $price += self::PRICING[$week_day];
         }

@@ -4,8 +4,17 @@ namespace App\Library\Repositories\CarPark;
 
 class CarParkBookingDay
 {
+    /**
+     * @var mixed
+     */
     protected $id;
+    /**
+     * @var string
+     */
     protected $date;
+    /**
+     * @var mixed
+     */
     protected $booking_id;
 
     /**
@@ -25,7 +34,7 @@ class CarParkBookingDay
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDate()
     {
@@ -33,7 +42,7 @@ class CarParkBookingDay
     }
 
     /**
-     * @param mixed $date
+     * @param string $date
      */
     public function setDate($date)
     {

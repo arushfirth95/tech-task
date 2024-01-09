@@ -6,6 +6,9 @@ use App\Library\CalculationService;
 
 class SeasonCalculationService implements CalculationService
 {
+    /**
+     * @var array
+     */
     CONST SEASONS = [
         'spring' => '03-20',
         'summer' => '06-21',
@@ -29,6 +32,7 @@ class SeasonCalculationService implements CalculationService
         $autumn_date_obj = new \DateTime($entity->format('Y').'-'.self::SEASONS['autumn']);
         $winter_date_obj = new \DateTime($entity->format('Y').'-'.self::SEASONS['winter']);
 
+        //Start at winter - if it doesn't fall into the below its before spring so technically winter
         $season = 'winter';
         if($entity->getTimestamp() > $spring_date_obj->getTimestamp()) $season = 'spring';
         if($entity->getTimestamp() > $summer_date_obj->getTimestamp()) $season = 'summer';

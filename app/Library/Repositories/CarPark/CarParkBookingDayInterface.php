@@ -4,12 +4,26 @@ namespace App\Library\Repositories\CarPark;
 
 interface CarParkBookingDayInterface
 {
+    /**
+     * @param CarParkBookingDay $bookingDay
+     * @return CarParkBookingDay
+     */
     public function insert(CarParkBookingDay $bookingDay);
 
+    /**
+     * @param CarParkBookingDay $bookingDay
+     * @return CarParkBookingDay
+     */
     public function update(CarParkBookingDay $bookingDay);
 
+    /**
+     * @param $id
+     */
     public function delete($id);
 
+    /**
+     * @param $booking_id
+     */
     public function deleteByBookingId($booking_id);
 
     /**

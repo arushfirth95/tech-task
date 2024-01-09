@@ -4,8 +4,17 @@ namespace App\Library\Repositories\CarPark;
 
 class CarParkBooking
 {
+    /**
+     * @var mixed
+     */
     protected $id;
+    /**
+     * @var mixed
+     */
     protected $price;
+    /**
+     * @var CarParkBookingDay[]
+     */
 
     protected $booking_days;
 
@@ -18,7 +27,7 @@ class CarParkBooking
     }
 
     /**
-     * @param mixed $id
+     * @param $id
      */
     public function setId($id)
     {

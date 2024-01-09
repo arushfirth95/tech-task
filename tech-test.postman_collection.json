@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "2e2f50bc-6c59-4fbd-b8be-db4567f9bde8",
+		"name": "tech-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27931585"
+	},
+	"item": [
+		{
+			"name": "create-booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date_from\": \"204-01-10\",\n    \"date_to\": \"2024-01-10\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/create-booking",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"create-booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check-price",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date_from\": \"2024-01-02\",\n    \"date_to\": \"2024-01-08\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/check-price",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"check-price"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "amend-booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date_from\": \"2024-01-02\",\n    \"date_to\": \"2024-01-08\",\n    \"booking_id\": \"30\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/amend-booking",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"amend-booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check-availability",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date_from\": \"2024-01-09\",\n    \"date_to\": \"2024-01-15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/check-availability",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"check-availability"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancel-booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"booking_id\": 20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/cancel-booking",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cancel-booking"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
