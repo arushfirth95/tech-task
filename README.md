@@ -1,3 +1,5 @@
+Simple Car Park Booking API for Creating, Amending, Canceling Bookings, and Checking Parking Prices and Availability.
+
 # Building and running the Project
 
 
