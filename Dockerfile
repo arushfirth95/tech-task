@@ -33,12 +33,6 @@ RUN composer install --no-interaction --optimize-autoloader --no-dev
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage/ /var/www/html/bootstrap/cache/ /var/www/html/public/
 
-# Set up Laravel environment variables
-COPY .env.example .env
-
-# Generate Laravel application key
-RUN php artisan key:generate
-
 # Expose port 80
 EXPOSE 80
 
