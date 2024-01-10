@@ -14,7 +14,7 @@ Simple Car Park Booking API for Creating, Amending, Canceling Bookings, and Chec
     - <b> php artisan migrate </b>
     - <b>chown -R www-data:www-data storage/</b>
   
-#### I have a postman collection attached in the project folder called: tech-test.postman_collection.json
+#### I have a postman collection attached in the project folder called: tech-task.postman_collection.json
 
     I have PHPUnit tests, please make sure you use the Interperator from the docker app container
     or each test!
